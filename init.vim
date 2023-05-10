@@ -2,8 +2,8 @@
 
 set encoding=utf-8
 scriptencoding utf-8
-language messages English_United States
-set langmenu=en_US.UTF-8  
+"language messages English_United States
+"set langmenu=en_US.UTF-8  
 
 " Vim with all enhancements
 "source $VIMRUNTIME/vimrc_example.vim ------------ my comment here : "It was in the vimrc config file
