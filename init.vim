@@ -171,8 +171,8 @@ colorscheme kanagawa
 "
 
 "changing default path for saving the files
-if getcwd() ==? 'C:\Windows\System32' || 'C:\Program Files (x86)\Neovim\bin'
-    cd '~/Desktop'
+if getcwd() ==? 'C:\Windows\System32' || getcwd() ==? 'C:\Program Files (x86)\Neovim\bin'
+    cd ~/Desktop
 endif
 
 
@@ -374,6 +374,7 @@ local cmp = require'cmp'
 
   -- Setup nvim-cmp.
   cmp.setup{
+
     snippet = {
       expand = function(args)
         require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
@@ -381,6 +382,8 @@ local cmp = require'cmp'
     },
 
     mapping = {
+      ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item()),
+      ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item()),
       ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
       ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
       ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
