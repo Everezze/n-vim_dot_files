@@ -1,5 +1,6 @@
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+--capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -40,3 +41,20 @@ for _, lsp in pairs(servers) do
     }
   }
 end
+
+require('lspconfig')['emmet_ls'].setup{
+    filetypes = {'javascript','html','javascriptreact','css','typescript'}
+}
+
+require('lspconfig')['tsserver'].setup{
+    init_options = {
+        preferences = {
+            includeCompletionsWithSnippetText = true,
+            includeCompletionsForImportStatements = true}
+    },
+    settings = {
+        completions = {
+            completeFunctionCalls = true
+        }
+    }
+}

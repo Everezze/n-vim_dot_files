@@ -328,6 +328,22 @@ nnoremap <leader>ihm :bmod!
 nnoremap <leader>ihmi :bmod!<CR>
 nnoremap <leader>ism :sbmod 
 nnoremap <leader>ismi :bmod<CR>
+
+"--------------------CASE Transforms REMAPPINGS--------------------
+"t for transform
+nnoremap <leader>ts gu
+nnoremap <leader>tu gU
+nnoremap <leader>ta g~
+nnoremap <leader>tsk guu
+nnoremap <leader>tuk gUU
+nnoremap <leader>tak g~~
+"--------------------NAVIGATE ALONG A LINE--------------------
+nnoremap <C-h> ^
+nnoremap <C-l> g_
+nnoremap <C-j> <C-m>
+nnoremap <C-;> kg_
+nnoremap <C-m> jg_
+
 "-----------------------------------MAPPINGS END-----------------------------------
 
 "unsetting/setting relative number for focus and insert mode 
