@@ -188,11 +188,16 @@ nnoremap <C-k> -
 
 "having pairs for common special characters
 "inoremap kj <Esc> removed because autohotkey script remaps Caps to Esc
-inoremap <A-'> ''<Left>
-inoremap <A-[> []<Left>
+inoremap <C-/> ''<Left>
+inoremap <C-/><C-/> ''
+inoremap <C-.> []<Left>
+inoremap <C-.><C-.> []
 inoremap <C-'> ""<Left>
+inoremap <C-'><C-'> ""
 inoremap <C-;> {}<Left>
+inoremap <C-;><C-;> {}
 inoremap <C-,> ()<Left>
+inoremap <C-,><C-,> ()
 
 "--------------------WINDOWS REMAPPINGS--------------------
 nnoremap <leader>h <C-W>h
@@ -344,6 +349,7 @@ nnoremap <C-j> <C-m>
 nnoremap <C-;> kg_
 nnoremap <C-m> jg_
 
+inoremap <expr> <C-j> Add_indent_to_new_line()
 "-----------------------------------MAPPINGS END-----------------------------------
 
 "unsetting/setting relative number for focus and insert mode 
@@ -352,6 +358,56 @@ augroup numbertoggle
   autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
   autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
 augroup END
+
+function Add_indent_to_new_line() 
+    echomsg "called"
+    let cursor_position  = col(".")
+    let char_before = cursor_position - 1
+    let char_after = cursor_position + 1
+    echomsg 'cursor pos: '.cursor_position
+    echomsg 'char before: '.char_before
+    echomsg 'char after: '.char_after
+    echomsg type(getline(".")[col(".")-2]) . "(".getline(".")[col(".")-2].")"
+    echomsg type(getline(".")[col(".")]) . "(".getline(".")[col(".")].")"
+    "normal! a O
+    "execute "normal! a"."\<cr>"."\<C-o>O"."\<Esc>"
+    ""execute "insert"." "."O"
+    "return "\<C-j>\<C-o>O"
+
+
+    "if getline(".")[col(".")-1] == ">" && getline(".")[col(".")+1] == "<"
+    "    insert <C-j>
+    "    normal O
+    "else
+    "    echo 'ok'
+    "endif
+    if getline(".")[charcol(".")-2] == "{" && getline(".")[charcol(".")] == ""
+        return "\<C-j>\<C-o>O"
+    "        insert <C-j>
+    "        normal O
+    "    endif
+    elseif getline(".")[charcol(".")-2] == "(" && getline(".")[charcol(".")] == ""
+        return "\<C-j>\<C-o>O"
+    "        insert <C-j>
+    "        normal O
+    "    endif
+    elseif getline(".")[charcol(".")-2] == "[" && getline(".")[charcol(".")] == ""
+        return "\<C-j>\<C-o>O"
+    "        insert <C-j>
+    "        normal O
+    "    endif
+    elseif getline(".")[charcol(".")-2] == ">" && getline(".")[charcol(".")] == "/"
+        return "\<C-j>\<C-o>O"
+    "        insert <C-j>
+    "        normal O
+    "    endif
+    else
+        return "\<C-j>"
+    endif
+endfunction
+
+let g:html_indent_script1="inc"
+let g:html_indent_style1="inc"
 
 lua << EOF
  require('my_lsp_config')
@@ -444,4 +500,9 @@ EOF
     "let oldchar= getchar()
     "let newchar= getchar()
     "echom action,oldchar,newchar
+"endfunction
+
+
+"function! Add_new_line()
+    "call append(".","")
 "endfunction
