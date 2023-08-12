@@ -334,14 +334,14 @@ nnoremap <leader>ihmi :bmod!<CR>
 nnoremap <leader>ism :sbmod 
 nnoremap <leader>ismi :bmod<CR>
 
-"--------------------CASE Transforms REMAPPINGS--------------------
-"t for transform
-nnoremap <leader>ts gu
-nnoremap <leader>tu gU
-nnoremap <leader>ta g~
-nnoremap <leader>tsk guu
-nnoremap <leader>tuk gUU
-nnoremap <leader>tak g~~
+"--------------------CASE exchanges REMAPPINGS--------------------
+"e for exchange(size of letter)
+nnoremap <leader>es gu
+nnoremap <leader>eu gU
+nnoremap <leader>ea g~
+nnoremap <leader>esk guu
+nnoremap <leader>euk gUU
+nnoremap <leader>eak g~~
 "--------------------NAVIGATE ALONG A LINE--------------------
 nnoremap <C-h> ^
 nnoremap <C-l> g_
@@ -349,6 +349,12 @@ nnoremap <C-j> <C-m>
 nnoremap <C-;> kg_
 nnoremap <C-m> jg_
 
+"--------------------TAB PAGES MAPPINGS--------------------
+nnoremap <leader>tj gT
+nnoremap <leader>tk gt
+nnoremap <leader>tt g<Tab>
+
+"--------------------FUNCTIONAL REMAPPINGS--------------------
 inoremap <expr> <C-j> Add_indent_to_new_line()
 "-----------------------------------MAPPINGS END-----------------------------------
 
