@@ -96,6 +96,7 @@ set noswapfile
 set timeoutlen=400
 set cursorline
 set cursorlineopt=both
+set fileformat=unix
 
 if (has("termguicolors"))
  set termguicolors
@@ -350,10 +351,50 @@ nnoremap <C-;> kg_
 nnoremap <C-m> jg_
 
 "--------------------TAB PAGES MAPPINGS--------------------
+"go to next tab page, previous tab page and last accessed tab page
 nnoremap <leader>tj gT
 nnoremap <leader>tk gt
 nnoremap <leader>tt g<Tab>
 
+"new tab with empty window of on a buffer filename, placed after the current tab
+"or after the Nth tab specified
+nnoremap <leader>tn :tabnew 
+nnoremap <leader>tnk :tabnew<CR>
+nnoremap <leader>tcn :tabnew <Left><Left><Left><Left><Left><Left><Left>
+
+"new tab and edit filename found in 'path' option
+"place the tab after the current one or after the Nth one specified
+nnoremap <leader>ts :tabfind 
+nnoremap <leader>tcs :tabfind <Left><Left><Left><Left><Left><Left><Left><Left>
+
+"go to first and last tab page
+nnoremap <leader>tfk :tabfirst<CR>
+nnoremap <leader>tl :tablast<CR>
+
+"go to last accessed tab page
+nnoremap <leader>tt g<Tab>
+
+"new tab on the filename under cursor (go to specific line for tfl)
+nnoremap <leader>tfi <C-W>gf
+nnoremap <leader>tfl <C-W>gF
+
+"close current tab page or the Nth one specified
+nnoremap <leader>td :tabclose<CR>
+nnoremap <leader>tcd :tabclose 
+nnoremap <leader>thd :tabclose!<CR>
+nnoremap <leader>thcd :tabclose! 
+
+"close all but the current tab page or the Nth one specified
+nnoremap <leader>to :tabonly<CR>
+nnoremap <leader>tco :tabonly 
+nnoremap <leader>tho :tabonly!<CR>
+nnoremap <leader>thco :tabonly! 
+
+"move tabs place
+nnoremap <leader>tp :tabmove<CR>
+nnoremap <leader>tcp :tabmove 
+nnoremap <leader>tcm :tabmove +
+nnoremap <leader>tcn :tabmove -
 "--------------------FUNCTIONAL REMAPPINGS--------------------
 inoremap <expr> <C-j> Add_indent_to_new_line()
 "-----------------------------------MAPPINGS END-----------------------------------
