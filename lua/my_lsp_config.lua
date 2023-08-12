@@ -63,3 +63,23 @@ require('lspconfig')['tsserver'].setup{
 --        filetypes = {'html','css','scss','less'}
 --    }
 
+
+require('lspconfig')['lua_ls'].setup{
+    settings = {
+        Lua = {
+            runtime = {
+                'LuaJIT',
+            },
+            diagnostics = {
+                globals = {'vim'},
+            },
+            workspace = {
+                library = vim.api.nvim_get_runtime_file("",true),
+                checkThirdParty = false, --to avoid lsp asking about configuring your work environment as 'luassert'
+            },
+            telemetry = {
+                enable = false,
+            },
+        },
+    },
+}
