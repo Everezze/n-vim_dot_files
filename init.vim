@@ -205,18 +205,20 @@ nnoremap <leader>h <C-W>h
 nnoremap <leader>j <C-W>j
 nnoremap <leader>k <C-W>k
 nnoremap <leader>l <C-W>l
-nnoremap <leader>sl <C-W>s
-nnoremap <leader>vl <C-W>v
 nnoremap <leader>c <C-W>c
+
 "open new window (same as :split or :vsplit and :enew)
 nnoremap <silent> <leader>vn :vnew<CR>
 nnoremap <silent> <leader>sn :new<CR>
-"quit and hard quit! window
-nnoremap <leader>q <C-W>q
-nnoremap <leader>fq :q!<CR>
+nnoremap <leader>sk <C-W>s
+nnoremap <leader>vk <C-W>v
 "split horiz or vert with a filename
 nnoremap <leader>sf :split 
 nnoremap <leader>vf :vsplit 
+
+"quit and hard quit! window
+nnoremap <leader>q <C-W>q
+nnoremap <leader>fq :q!<CR>
 
 "put focused window at top/bottom  full width or far right/left full height
 nnoremap <leader>fj <C-W>J
@@ -230,14 +232,14 @@ nnoremap <leader>fh <C-W>H
 nnoremap <leader>fwh <C-W>_
 "set window width by N or max default
 nnoremap <leader>fww <C-W>\|
-"increase window height
-nnoremap <leader>fi 5<C-W>+
-"decrease window height
-nnoremap <leader>fd 5<C-W>-
 "increase window width
-nnoremap <leader>f, 5<C-W><
+nnoremap <leader>fi 5<C-W>>
 "decrease window width
-nnoremap <leader>f; 5<C-W>>
+nnoremap <leader>fd 5<C-W><
+"decrease window height
+nnoremap <leader>f, 5<C-W>-
+"increase window height
+nnoremap <leader>f; 5<C-W>+
 "make all windows equal
 nnoremap <leader>fe <C-W>=
 "make horiz and vert equalizer remaps
@@ -247,10 +249,15 @@ nnoremap <leader>fe <C-W>=
 "SWAPPING WINDOWS PLACE
 "exchange window place with next one if last change with previous
 "with count exchange with Nth window
+"cursor is put in the other window
 nnoremap <leader>fx <C-W>x
+
 "rotate downwards/rightwards row or column of windows the curr win is in
+"cursor remains in the same window
 nnoremap <leader>fro <C-W>r
+
 "rotate upwards/leftwards row or column of windows the curr win is in
+"cursor remains in the same window
 nnoremap <leader>fri <C-W>R
 
 "SWAPPING WINDOWS FOCUS
@@ -269,15 +276,25 @@ nnoremap <leader>fp <C-W>p
 nnoremap <leader>fy <C-W>P
 
 "search file on cursor and split it if found else do nothing
-nnoremap <leader>fs <C-W>f
+"go to specified line for fsl
+nnoremap <leader>fsk <C-W>f
+nnoremap <leader>fsl <C-W>F
 
-"quit all windows except focused one
+"quit all windows except focused one or Nth one
+"changes not lost so safe command
 nnoremap <leader>fo <C-W>o
 
-"split window and edit alternate file
+"split window and edit alternate file or the Nth one
 nnoremap <leader>fa <C-W>^
 
+"move current window to new tabpage, will be opened after current tabpage or
+"before the Nth one specified
+"Fails if there is only one window
+nnoremap <leader>fta <C-W>T
+
 "--------------------BUFFER REMAPPINGS--------------------
+"add filename to buffer list without loading it
+"balt sets alternate file for current window to filename
 nnoremap <leader>ia :badd 
 nnoremap <leader>it :balt 
 
@@ -285,6 +302,7 @@ nnoremap <leader>ii :buf
 nnoremap <leader>ihi :buf! 
 nnoremap <leader>is :sbuf 
 
+"changes are lost with '!'
 nnoremap <leader>id :bdel 
 nnoremap <leader>idi :bdel<CR>
 nnoremap <leader>ihd :bdel! 
@@ -292,6 +310,7 @@ nnoremap <leader>ihdi :bdel!<CR>
 nnoremap <leader>ird :bdel<Left><Left><Left><Left>
 nnoremap <leader>ihrd :bdel!<Left><Left><Left><Left><Left>
 
+"changes are lost with '!'
 nnoremap <leader>iw :bwipe 
 nnoremap <leader>iwi :bwipe<CR>
 nnoremap <leader>ihw :bwipe! 
@@ -299,6 +318,7 @@ nnoremap <leader>ihwi :bwipe!<CR>
 nnoremap <leader>irw :bwipe<Left><Left><Left><Left>
 nnoremap <leader>ihrw :bwipe!<Left><Left><Left><Left><Left><Left>
 
+"changes are lost with '!'
 nnoremap <leader>iu :bunload 
 nnoremap <leader>iui :bunload<CR>
 nnoremap <leader>ihu :bunload! 
@@ -328,13 +348,17 @@ nnoremap <leader>il :blast<CR>
 nnoremap <leader>ihl :blast!<CR>
 nnoremap <leader>isl :sblast<CR>
 
+"also looks for unlisted buffers, if no modified buffers command fails
 nnoremap <leader>im :bmod 
 nnoremap <leader>imi :bmod<CR>
 nnoremap <leader>ihm :bmod!
 nnoremap <leader>ihmi :bmod!<CR>
 nnoremap <leader>ism :sbmod 
-nnoremap <leader>ismi :bmod<CR>
+nnoremap <leader>ismi :sbmod<CR>
 
+"open one window for each buffer in the buff list
+"max number of window to open can be given with N
+nnoremap <leader>isa :sball 
 "--------------------CASE exchanges REMAPPINGS--------------------
 "e for exchange(size of letter)
 nnoremap <leader>es gu
@@ -352,6 +376,7 @@ nnoremap <C-m> jg_
 
 "--------------------TAB PAGES MAPPINGS--------------------
 "go to next tab page, previous tab page and last accessed tab page
+"here gT goes to nth tab pages back not taking tab page number unlike gt
 nnoremap <leader>tj gT
 nnoremap <leader>tk gt
 nnoremap <leader>tt g<Tab>
@@ -371,30 +396,32 @@ nnoremap <leader>tcs :tabfind <Left><Left><Left><Left><Left><Left><Left><Left>
 nnoremap <leader>tfk :tabfirst<CR>
 nnoremap <leader>tl :tablast<CR>
 
-"go to last accessed tab page
-nnoremap <leader>tt g<Tab>
-
 "new tab on the filename under cursor (go to specific line for tfl)
 nnoremap <leader>tfi <C-W>gf
 nnoremap <leader>tfl <C-W>gF
 
-"close current tab page or the Nth one specified
+"destroy(close) current tab page or the Nth one specified
+"safe command changes never lost
 nnoremap <leader>td :tabclose<CR>
 nnoremap <leader>tcd :tabclose 
 nnoremap <leader>thd :tabclose!<CR>
 nnoremap <leader>thcd :tabclose! 
 
 "close all but the current tab page or the Nth one specified
+"safe command changes never lost
 nnoremap <leader>to :tabonly<CR>
 nnoremap <leader>tco :tabonly 
 nnoremap <leader>tho :tabonly!<CR>
 nnoremap <leader>thco :tabonly! 
 
-"move tabs place
-nnoremap <leader>tp :tabmove<CR>
-nnoremap <leader>tcp :tabmove 
-nnoremap <leader>tcm :tabmove +
-nnoremap <leader>tcn :tabmove -
+"move tabs place after tab page N if no N it is made the last one.
+nnoremap <leader>tm :tabmove<CR>
+nnoremap <leader>tcm :tabmove 
+"move tab page Nth places to right or left
+nnoremap <leader>tpk :tabmove +
+nnoremap <leader>tpj :tabmove -
+
+nnoremap <leader>tsa :tab sball 
 "--------------------FUNCTIONAL REMAPPINGS--------------------
 inoremap <expr> <C-j> Add_indent_to_new_line()
 "-----------------------------------MAPPINGS END-----------------------------------
