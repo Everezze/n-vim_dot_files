@@ -62,7 +62,7 @@ set splitbelow splitright
 set winheight =15
 set list
 "set listchars=tab:>-,trail:.
-set listchars=tab:>-,space:·,eol:↴,multispace:···•,
+set listchars=tab:\|·,space:·,eol:↴,multispace:···•
 set noundofile
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching 
@@ -72,7 +72,7 @@ set mouse=v                 " middle-click paste with
 set incsearch               " incremental search
 set tabstop=4               " number of columns occupied by a tab 
 set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
-set expandtab               " converts tabs to white space
+"set expandtab               " converts tabs to white space
 set shiftwidth=4            " width for autoindents
 set autoindent              " indent a new line the same amount as the line just typed
 filetype plugin indent on   "allow auto-indenting depending on file type
@@ -93,10 +93,13 @@ set completeopt=menuone,noinsert
 set spell spelllang=en_us
 set spellsuggest=best,9
 set noswapfile
+set nobackup
 set timeoutlen=400
 set cursorline
 set cursorlineopt=both
 set fileformat=unix
+set foldcolumn=1
+set matchtime=2
 
 if (has("termguicolors"))
  set termguicolors
@@ -179,13 +182,28 @@ endif
 
 "-----------------------------------MAPPINGS START-----------------------------------
 
-"opening windows easily
 let mapleader= " "
 
 "get the column of the mark
-nnoremap <leader>' `
+noremap <leader>' `
+
+nnoremap <leader>o :vsplit $MYVIMRC<CR>
+nnoremap <leader>at @
+
+"--------------------NAVIGATE ALONG A LINE--------------------
 "cursor on line above on first non-blank char
-nnoremap <C-k> -
+noremap <C-k> -
+noremap <C-h> _
+noremap <C-l> g_
+noremap <C-j> +
+noremap <C-;> kg_
+noremap <C-m> jg_
+noremap <leader>gj j0
+noremap <leader>gk k0
+noremap <leader>g; k$
+noremap <leader>gm j$
+noremap <leader>gh 0
+noremap <leader>gl $
 
 "having pairs for common special characters
 "inoremap kj <Esc> removed because autohotkey script remaps Caps to Esc
@@ -367,12 +385,6 @@ nnoremap <leader>ea g~
 nnoremap <leader>esk guu
 nnoremap <leader>euk gUU
 nnoremap <leader>eak g~~
-"--------------------NAVIGATE ALONG A LINE--------------------
-nnoremap <C-h> ^
-nnoremap <C-l> g_
-nnoremap <C-j> <C-m>
-nnoremap <C-;> kg_
-nnoremap <C-m> jg_
 
 "--------------------TAB PAGES MAPPINGS--------------------
 "go to next tab page, previous tab page and last accessed tab page
