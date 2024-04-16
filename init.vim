@@ -302,13 +302,13 @@ nnoremap <leader>fsl <C-W>F
 "changes not lost so safe command
 nnoremap <leader>fo <C-W>o
 
-"split window and edit alternate file or the Nth one
+"split window and edit alternate file or the Nth buffer
 nnoremap <leader>fa <C-W>^
 
-"move current window to new tabpage, will be opened after current tabpage or
+"move current window to NEW tabpage, will be opened after current tabpage or
 "before the Nth one specified
 "Fails if there is only one window
-nnoremap <leader>fta <C-W>T
+nnoremap <leader>fn <C-W>T
 
 "--------------------BUFFER REMAPPINGS--------------------
 "add filename to buffer list without loading it
@@ -385,6 +385,7 @@ nnoremap <leader>ea g~
 nnoremap <leader>esk guu
 nnoremap <leader>euk gUU
 nnoremap <leader>eak g~~
+nnoremap <leader>ee ~
 
 "--------------------TAB PAGES MAPPINGS--------------------
 "go to next tab page, previous tab page and last accessed tab page
