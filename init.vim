@@ -72,7 +72,7 @@ set mouse=v                 " middle-click paste with
 set incsearch               " incremental search
 set tabstop=4               " number of columns occupied by a tab 
 set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
-set expandtab               " converts tabs to white space
+"set expandtab               " converts tabs to white space
 set shiftwidth=4            " width for autoindents
 set autoindent              " indent a new line the same amount as the line just typed
 filetype plugin indent on   "allow auto-indenting depending on file type
@@ -284,13 +284,13 @@ nnoremap <leader>fsl <C-W>F
 "changes not lost so safe command
 nnoremap <leader>fo <C-W>o
 
-"split window and edit alternate file or the Nth one
+"split window and edit alternate file or the Nth buffer
 nnoremap <leader>fa <C-W>^
 
-"move current window to new tabpage, will be opened after current tabpage or
+"move current window to NEW tabpage, will be opened after current tabpage or
 "before the Nth one specified
 "Fails if there is only one window
-nnoremap <leader>fta <C-W>T
+nnoremap <leader>fn <C-W>T
 
 "--------------------BUFFER REMAPPINGS--------------------
 "add filename to buffer list without loading it
@@ -367,6 +367,7 @@ nnoremap <leader>ea g~
 nnoremap <leader>esk guu
 nnoremap <leader>euk gUU
 nnoremap <leader>eak g~~
+nnoremap <leader>ee ~
 "--------------------NAVIGATE ALONG A LINE--------------------
 nnoremap <C-h> ^
 nnoremap <C-l> g_
