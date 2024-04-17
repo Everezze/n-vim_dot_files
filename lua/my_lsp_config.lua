@@ -27,7 +27,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'html', 'cssls', 'tsserver', 'emmet_ls', 'vimls', 'pyright', 'intelephense','clangd','lua_ls'}
+local servers = { 'html', 'cssls', 'tsserver', 'emmet_ls', 'vimls', 'pyright', 'intelephense','clangd','lua_ls','bashls'}
 
 
 
@@ -43,7 +43,8 @@ for _, lsp in pairs(servers) do
 end
 
 require('lspconfig')['emmet_ls'].setup{
-    filetypes = {'javascript','html','javascriptreact','css','typescript'}
+    filetypes = {'html','javascriptreact','css','typescript'}
+    --filetypes = {'javascript','html','javascriptreact','css','typescript'}
 }
 
 require('lspconfig')['tsserver'].setup{
