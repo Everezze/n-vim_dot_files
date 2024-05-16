@@ -438,6 +438,13 @@ nnoremap <leader>tpj :tabmove -
 nnoremap <leader>tsa :tab sball 
 "--------------------FUNCTIONAL REMAPPINGS--------------------
 inoremap <expr> <C-j> Add_indent_to_new_line()
+"--------------------GET HSL COLORS FOR CSS FILES--------------------
+if has('linux')
+	augroup get_hsl
+		autocmd!
+		autocmd FileType css nnoremap gcl :.!get-hsl.sh<CR>
+	augroup END
+endif
 "-----------------------------------MAPPINGS END-----------------------------------
 
 "unsetting/setting relative number for focus and insert mode 
