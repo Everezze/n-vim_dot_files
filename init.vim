@@ -98,6 +98,7 @@ set timeoutlen=400
 set cursorline
 set cursorlineopt=both
 set fileformat=unix
+set fileformats=unix
 set foldcolumn=1
 set matchtime=2
 
