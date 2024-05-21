@@ -48,10 +48,9 @@ function! Get_mode_name()
 		let g:opending_indicator = 0
 		let g:current_hi = g:mode_highlights["OP-PENDING"]
 		return "%#" . g:mode_highlights["OP-PENDING"] . "# " . "OP-PENDING "
-	else
-		let g:current_hi = g:mode_highlights[mode()]
-		return "%#" . g:mode_highlights[mode()] . "# " . g:modes_long_names[mode()]
 	endif
+	let g:current_hi = g:mode_highlights[mode()]
+	return "%#" . g:mode_highlights[mode()] . "# " . g:modes_long_names[mode()]
 	"return g:modes_long_names[mode()]
 endfunction
 "." "
@@ -77,10 +76,6 @@ augroup check_pending_mode
 	autocmd ModeChanged no*:n call Redrawstatline1()
 augroup end
 
-augroup get_git
-	autocmd!
-augroup end
-
 function! Is_dir_git()
 	"echom $HOME . ".;"
 	"let g:git_dir = finddir(".git", ".;" . $HOME)
@@ -90,10 +85,6 @@ function! Is_dir_git()
 	"	echom "no repo found"
 	"endif
 	return " git:gud %#git_rounded_corners#"
-endfunction
-
-function! Determine_bg()
-	return "%#status_line#"
 endfunction
 
 function! Get_rounded_borders()
@@ -119,11 +110,3 @@ set statusline+=%#right_side#
 set statusline+=buf:%n\ \|\ 
 set statusline+=%l\\%L
 set statusline+=\(%p\%%)
-
-function! Tst_string()
-	if("C:\\users\\random\\Desktop\\fem_projects\\todo_app")
-		echo "string not evaluated to 0"
-	else
-		echo "finddir returned string evalutes to 0"
-	endif
-endfunction
