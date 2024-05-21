@@ -63,9 +63,18 @@ function! Redrawstatline()
 	redrawstatus
 endfunction
 
+function! Redrawstatline1()
+	"echom"opending mode entered"
+	"echo g:modes_long_names[mode()]
+	let g:opending_indicator = 0
+	redrawstatus
+endfunction
+
+
 augroup check_pending_mode
 	autocmd!
 	autocmd ModeChanged *:no* call Redrawstatline()
+	autocmd ModeChanged no*:n call Redrawstatline1()
 augroup end
 
 augroup get_git

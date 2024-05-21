@@ -50,8 +50,8 @@ endfunction
 "set guifont=JetBrains\ 14
 "set guifont=JetBrains_Mono:h12:cDEFAULT
 "set guifont=Iosevka_SS18:h14:cDEFAULT
-set lines =50
-set columns =120
+"set lines =50
+"set columns =120
 "winpos 350 150
 set textwidth=80
 set linebreak
@@ -101,6 +101,8 @@ set fileformat=unix
 set fileformats=unix
 set foldcolumn=1
 set matchtime=2
+set noshowmode
+set noruler
 
 if (has("termguicolors"))
  set termguicolors
@@ -117,8 +119,6 @@ call plug#begin(stdpath("config") . '/plugged')
     "Plug 'EdenEast/nightfox.nvim'
     "Plug 'sonph/onehalf', {'rtp':'vim'}
     "Plug 'kyoz/purify', { 'rtp': 'vim' }
-    "Plug 'vim-airline/vim-airline'
-    "Plug 'vim-airline/vim-airline-themes'
     Plug 'ap/vim-css-color'
     Plug 'srcery-colors/srcery-vim'
     "Plug 'ayu-theme/ayu-vim'
