@@ -13,7 +13,7 @@ let g:modes_long_names = {
 
 let g:mode_highlights = {
 			\"n":"normal_mode",
-			\"OP-PENDING":"op_pending_mode",
+			\"no":"op_pending_mode",
 			\"v":"vis_char_mode",
 			\"V":"vis_line_mode",
 			\"":"vis_block_mode",
@@ -42,18 +42,39 @@ highlight right_side_corner guifg=#EADEDA guibg=#303030
 "#D5D5FF -> some sort of navy blue
 
 
-let g:opending_indicator = 1
+let g:opending_indicator = 0
 function! Get_mode_name()
-	if g:opending_indicator
+	"if w:statusactive
+	"	let l:statusmode = mode()
+	"else
+	"	let l:statusmode ="n"
+	"endif
+	if win_getid(winnr()) != g:active_winid
+		let l:statusmode = "n"
+	elseif g:opending_indicator
 		let g:opending_indicator = 0
-		let g:current_hi = g:mode_highlights["OP-PENDING"]
-		return "%#" . g:mode_highlights["OP-PENDING"] . "# " . "OP-PENDING "
+		let l:statusmode = "no"
+	else
+		let l:statusmode = mode()
 	endif
-	let g:current_hi = g:mode_highlights[mode()]
-	return "%#" . g:mode_highlights[mode()] . "# " . g:modes_long_names[mode()]
+
+	let g:current_hi = g:mode_highlights[l:statusmode]
+	return "%#" . g:mode_highlights[l:statusmode] . "# " . g:modes_long_names[l:statusmode]
 	"return g:modes_long_names[mode()]
 endfunction
 "." "
+
+"augroup statusline
+"	autocmd!
+"	autocmd WinEnter,BufEnter * let w:statusactive = 1
+"	autocmd WinLeave,BufLeave * let w:statusactive = 0
+"augroup end
+
+augroup statusline
+	autocmd!
+	autocmd WinEnter,BufEnter * let g:active_winid = win_getid()
+augroup end
+let g:active_winid = 1000
 
 function! Redrawstatline()
 	"echom"opending mode entered"
