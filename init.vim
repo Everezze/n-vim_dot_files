@@ -378,6 +378,9 @@ nnoremap <leader>ismi :sbmod<CR>
 "open one window for each buffer in the buff list
 "max number of window to open can be given with N
 nnoremap <leader>isa :sball 
+
+"switch between current and alternate buffer
+nnoremap <leader>al <C-^>
 "--------------------CASE exchanges REMAPPINGS--------------------
 "e for exchange(size of letter)
 nnoremap <leader>es gu
