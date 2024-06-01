@@ -115,12 +115,13 @@ call plug#begin(stdpath("config") . '/plugged')
     Plug 'rose-pine/neovim'
     Plug 'bluz71/vim-nightfly-colors'
     Plug 'rebelot/kanagawa.nvim'
+    Plug 'ap/vim-css-color'
+
     "Plug 'morhetz/gruvbox'
     "Plug 'EdenEast/nightfox.nvim'
     "Plug 'sonph/onehalf', {'rtp':'vim'}
     "Plug 'kyoz/purify', { 'rtp': 'vim' }
-    Plug 'ap/vim-css-color'
-    Plug 'srcery-colors/srcery-vim'
+    "Plug 'srcery-colors/srcery-vim'
     "Plug 'ayu-theme/ayu-vim'
     "Plug 'jmoggee/mirage.vim'
     "Plug 'elvessousa/sobrio'
@@ -131,8 +132,9 @@ call plug#begin(stdpath("config") . '/plugged')
     "Plug 'navarasu/onedark.nvim'
     "Plug 'matsuuu/pinkmare'
     "Plug 'mhartington/oceanic-next'
-    Plug 'neovim/nvim-lspconfig'
     "Plug 'williamboman/nvim-lsp-installer'
+
+    Plug 'neovim/nvim-lspconfig'
 
     "Snippet plugin for creating snippets and customize them
     Plug 'L3MON4D3/LuaSnip'
@@ -506,6 +508,12 @@ endfunction
 
 let g:html_indent_script1="inc"
 let g:html_indent_style1="inc"
+
+augroup add_php_indent
+	autocmd!
+	"autocmd FileType php let b:PHP_default_indenting=1
+	autocmd FileType php set autoindent
+augroup end
 
 runtime highlight_yank.vim
 runtime perso_statusline.vim
