@@ -1,4 +1,5 @@
 "MAIN CONFIG FILE FOR NVIM
+runtime html_renamer.vim
 
 set encoding=utf-8
 scriptencoding utf-8
@@ -207,6 +208,8 @@ noremap <leader>g; k$
 noremap <leader>gm j$
 noremap <leader>gh 0
 noremap <leader>gl $
+noremap gm gM
+noremap gM gm
 
 "having pairs for common special characters
 "inoremap kj <Esc> removed because autohotkey script remaps Caps to Esc
@@ -384,14 +387,13 @@ nnoremap <leader>isa :sball
 "switch between current and alternate buffer
 nnoremap <leader>al <C-^>
 "--------------------CASE exchanges REMAPPINGS--------------------
-"e for exchange(size of letter)
-nnoremap <leader>es gu
-nnoremap <leader>eu gU
-nnoremap <leader>ea g~
-nnoremap <leader>esk guu
-nnoremap <leader>euk gUU
-nnoremap <leader>eak g~~
-nnoremap <leader>ee ~
+"re-routing prefix gu to avoid typing uppercase letters as shift key
+"can be hard to reach
+nnoremap gu gU
+nnoremap guk gUU
+nnoremap gl gu
+nnoremap ga g~
+nnoremap gak g~~
 
 "--------------------TAB PAGES MAPPINGS--------------------
 "go to next tab page, previous tab page and last accessed tab page
@@ -443,6 +445,7 @@ nnoremap <leader>tpj :tabmove -
 nnoremap <leader>tsa :tab sball 
 "--------------------FUNCTIONAL REMAPPINGS--------------------
 inoremap <expr> <C-j> Add_indent_to_new_line()
+onoremap <C-,> :call Rename_tag()<CR>
 "--------------------GET HSL COLORS FOR CSS FILES--------------------
 if has('linux')
 	augroup get_hsl
@@ -505,6 +508,9 @@ function Add_indent_to_new_line()
         return "\<C-j>"
     endif
 endfunction
+
+"-----------------------------------netrw mappings-----------------------------------
+nnoremap <leader>n :Vexplore!<CR>
 
 let g:html_indent_script1="inc"
 let g:html_indent_style1="inc"

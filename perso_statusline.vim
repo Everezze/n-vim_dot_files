@@ -9,6 +9,9 @@ let g:modes_long_names = {
 			\"i":"INSERT ",
 			\"R":"REPLACE ",
 			\"c":"CMD-LINE ",
+			\"s":"SEL-CHAR",
+			\"S":"SEL-LINE",
+			\"":"SEL-BLOCK",
 			\}
 
 let g:mode_highlights = {
@@ -20,6 +23,9 @@ let g:mode_highlights = {
 			\"i":"insert_mode",
 			\"R":"replace_mode",
 			\"c":"command_mode",
+			\"s":"sel_char_mode",
+			\"S":"sel_line_mode",
+			\"":"sel_block_mode",
 			\}
 
 "other color: #E6DBAC / #BDA55D / #F34100 / #DAA520
@@ -33,6 +39,9 @@ highlight vis_line_mode guifg=black guibg=#FEBA4F
 highlight vis_block_mode guifg=black guibg=#E1AD01
 highlight command_mode guifg=white guibg=#6500B0
 highlight replace_mode guifg=black guibg=#E32636
+highlight sel_char_mode guifg=#0e1c36 guibg=#7EBC89
+highlight sel_line_mode guifg=#f7f0f5 guibg=#499167
+highlight sel_block_mode guifg=#f7f0f5 guibg=#3d7068
 highlight rounded_corners guibg=#29335C
 highlight git guifg=black guibg=#EADEDA
 highlight git_rounded_corners guifg=#EADEDA guibg=#303030
@@ -40,6 +49,15 @@ highlight right_side guifg=black guibg=#EADEDA
 highlight right_side_corner guifg=#EADEDA guibg=#303030
 "#29335C -> some sort of navy blue
 "#D5D5FF -> some sort of navy blue
+
+"combine
+"fg =#023436 / #8FC0A9
+"fg =#0e1c36 / #dcd6f7
+"fg =#0e1c36 / #38405F
+"fg =#0e1c36 / #a6b1e1
+"fg =#f7f0f5 / #424874
+
+" green shades: #499167 / #3F4531 / #7EBC89 / #3D7068
 
 
 let g:opending_indicator = 0
