@@ -193,6 +193,8 @@ noremap <leader>' `
 
 nnoremap <leader>o :vsplit $MYVIMRC<CR>
 nnoremap <leader>at @
+nnoremap <silent> gs :w<CR>
+"gs above is initially for 'go sleep' command
 
 "--------------------NAVIGATE ALONG A LINE--------------------
 "cursor on line above on first non-blank char
@@ -445,7 +447,7 @@ nnoremap <leader>tpj :tabmove -
 nnoremap <leader>tsa :tab sball 
 "--------------------FUNCTIONAL REMAPPINGS--------------------
 inoremap <expr> <C-j> Add_indent_to_new_line()
-onoremap <C-,> :call Rename_tag()<CR>
+nnoremap c<C-,> :call Rename_tag()<CR>
 "--------------------GET HSL COLORS FOR CSS FILES--------------------
 if has('linux')
 	augroup get_hsl
