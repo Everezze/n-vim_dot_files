@@ -526,6 +526,7 @@ augroup end
 runtime highlight_yank.vim
 runtime perso_statusline.vim
 
+if(has('nvim'))
 lua << EOF
  require('my_lsp_config')
 EOF
@@ -608,6 +609,7 @@ local cmp = require'cmp'
 
   }
 EOF
+endif
 
 
 "---------macro assignment and changing surroundings---------
