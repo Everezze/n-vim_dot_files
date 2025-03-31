@@ -447,12 +447,12 @@ nnoremap <leader>tpj :tabmove -
 nnoremap <leader>tsa :tab sball 
 "--------------------FUNCTIONAL REMAPPINGS--------------------
 inoremap <expr> <C-j> Add_indent_to_new_line()
-nnoremap c<C-,> :call Rename_tag()<CR>
+"nnoremap c<C-,> :call Rename_tag()<CR>
 "--------------------GET HSL COLORS FOR CSS FILES--------------------
 if has('linux')
 	augroup get_hsl
 		autocmd!
-		autocmd FileType css nnoremap gcl :.!get-hsl.sh<CR>
+		autocmd FileType css nnoremap <buffer> gcl :.!get-hsl.sh<CR>
 	augroup END
 endif
 "-----------------------------------MAPPINGS END-----------------------------------
