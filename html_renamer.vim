@@ -19,7 +19,7 @@ function! Rename_tag()
 			echom 'start of start tag: ' . string(l:start_tag_pos)
 			let l:first_tag_match = matchadd('sel_line_mode', '<\@<=\(\w*\)\%#\(\w*\)')
 			"echo "first col char for both: " . string(l:end_tag_pos[2]) . " ". string(l:start_tag_pos[2])
-			call Update_tags(l:start_tag_pos,l:end_tag_pos)
+			call Update_tags(l:start_tag_pos,l:end_tag_pos,l:first_tag_match)
 		endif
 	else
 		let g:can_rename = 0
@@ -27,19 +27,21 @@ function! Rename_tag()
 	endif
 endfunction
 
-function! Update_tags(start_tag_start,end_tag_start)
+function! Update_tags(start_tag_start,end_tag_start,first_tag_match)
 	let l:new_pos = a:end_tag_start
 	normal diw
 	call cursor(a:end_tag_start[1:2])
 	normal diw 
 	call cursor(a:start_tag_start[1:2])
+	let delete_hi = 0
 
 	startinsert
 	while 1
 		let l:myChar = getcharstr()
 		if l:myChar ==? ""
 			stopinsert
-			call clearmatches()
+			call matchdelete(a:first_tag_match)
+			call matchdelete(l:last_match)
 			break
 		endif
 		execute "normal! i" . l:myChar
@@ -47,13 +49,20 @@ function! Update_tags(start_tag_start,end_tag_start)
 		let l:old_pos[2] = l:old_pos[2] + 1
 		call cursor(l:new_pos[1:2])
 		execute "normal! i" . l:myChar
+		echom "initial col: " . string(a:end_tag_start[2] ). "movable col: ".string(l:new_pos[2])
+		if delete_hi
+			call matchdelete(l:last_match)
+		endif
 		let l:new_pos = getcursorcharpos()
-		let [l:line,l:col] = a:end_tag_start[1:2]
-		let l:length = l:new_pos[2] - a:end_tag_start[2] +1
-		call matchaddpos('sel_line_mode',[[l:line,l:col,l:length]])
 		let l:new_pos[2] = l:new_pos[2] + 1
+		let [l:line,l:col] = a:end_tag_start[1:2]
+		let l:length = l:new_pos[2] - a:end_tag_start[2]
+		let l:last_match = matchaddpos('sel_line_mode',[[l:line,l:col,l:length]])
 		call cursor(l:old_pos[1:2])
 		redraw
+		if !delete_hi
+			let delete_hi =1
+		endif
 	endwhile
 endfunction
 
