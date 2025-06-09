@@ -195,6 +195,8 @@ nnoremap <leader>o :vsplit $MYVIMRC<CR>
 nnoremap <leader>at @
 nnoremap <silent> gs :w<CR>
 "gs above is initially for 'go sleep' command
+"remap below redraws the screen
+nnoremap <leader><C-l> <C-l>
 
 "--------------------NAVIGATE ALONG A LINE--------------------
 "cursor on line above on first non-blank char
@@ -391,11 +393,12 @@ nnoremap <leader>al <C-^>
 "--------------------CASE exchanges REMAPPINGS--------------------
 "re-routing prefix gu to avoid typing uppercase letters as shift key
 "can be hard to reach
-nnoremap gu gU
-nnoremap guk gUU
-nnoremap gl gu
-nnoremap ga g~
-nnoremap gak g~~
+noremap gu gU
+noremap guk gUU
+noremap gl gu
+noremap glk guu
+noremap ga g~
+noremap gak g~~
 
 "--------------------TAB PAGES MAPPINGS--------------------
 "go to next tab page, previous tab page and last accessed tab page
@@ -441,8 +444,8 @@ nnoremap <leader>thco :tabonly!
 nnoremap <leader>tm :tabmove<CR>
 nnoremap <leader>tcm :tabmove 
 "move tab page Nth places to right or left
-nnoremap <leader>tpk :tabmove +
-nnoremap <leader>tpj :tabmove -
+nnoremap <leader>tpk :call Place_tab("+")<CR>
+nnoremap <leader>tpj :call Place_tab("-")<CR>
 
 nnoremap <leader>tsa :tab sball 
 "--------------------FUNCTIONAL REMAPPINGS--------------------
@@ -509,6 +512,18 @@ function Add_indent_to_new_line()
     else
         return "\<C-j>"
     endif
+endfunction
+
+function Place_tab(direction)
+	echom "direction is: ".a:direction
+	echom "count given is: ".v:count
+	if !v:count
+		let l:step = 1
+	else
+		let l:step = v:count
+	endif
+	execute ":".string(l:step)."tabmove"
+	"execute "tabmove " . a:direction . string(v:count)
 endfunction
 
 "-----------------------------------netrw mappings-----------------------------------
